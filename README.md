@@ -1,7 +1,7 @@
 
-# Get IP Data
+# Penjelasan Singkat
 
-Adalah sebuah code HTML sederhana yang secara otomatis mengumpulkan data pengunjung (seperti IP, lokasi, bahasa, baterai, resolusi layar, dll) dan mengirimkannya ke bot Telegram milik admin.
+Ini adalah project sebuah code HTML sederhana yang saya buat, untuk secara otomatis mengambil dan mengumpulkan data pengunjung (seperti IP, lokasi, bahasa, baterai, resolusi layar, dll) dan mengirimkannya ke bot Telegram milik admin.
 
 ---
 
